@@ -14,12 +14,13 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="@color/white">
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:scaleType="fitXY"
-        android:background="@color/cardview_shadow_end_color"
-        android:id="@+id/imgGallery"/>
+
+       <ImageView
+           android:id="@+id/imgGallery"
+           android:layout_width="match_parent"
+           android:layout_height="400dp"
+           android:background="@color/cardview_shadow_end_color"
+           android:scaleType="fitXY" />
 
    </LinearLayout>
     <Button
