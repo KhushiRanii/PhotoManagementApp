@@ -14,59 +14,19 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int GALLERY_REQ_CODE = 1000;
-    private final int CAMERA_REQ_CODE = 200;
-    ImageView imgGallery;
+    private Button move;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        imgGallery= findViewById(R.id.imgGallery);
-        Button btnGallery = findViewById(R.id.btnGallery);
-        Button btnCamera = findViewById(R.id.btnCamera);
-
-
-        btnCamera.setOnClickListener(new View.OnClickListener() {
+        move = findViewById(R.id.btnMove);
+        move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(iCamera, CAMERA_REQ_CODE);
+                Intent intent = new Intent(MainActivity.this, Gallery.class);
+                startActivity(intent);
             }
         });
-
-        Log.e("TAG", "onCreate: ",null );
-
-        btnGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent iGallery = new Intent(Intent.ACTION_PICK);
-                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(iGallery, GALLERY_REQ_CODE);
-
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK)
-        {
-            if (requestCode == GALLERY_REQ_CODE)
-            {
-                // for gallery
-                imgGallery.setImageURI(data.getData());
-            }
-            else if (requestCode == CAMERA_REQ_CODE)
-            {
-                // for Camera
-                Bitmap img =(Bitmap)(data.getExtras().get("data"));
-                imgGallery.setImageBitmap(img);
-
-            }
-        }
     }
 }
