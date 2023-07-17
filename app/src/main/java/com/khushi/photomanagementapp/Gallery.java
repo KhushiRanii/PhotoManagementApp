@@ -3,6 +3,7 @@ package com.khushi.photomanagementapp;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,11 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class Gallery extends AppCompatActivity {
 
     private final int GALLERY_REQ_CODE = 100;
     private final int CAMERA_REQ_CODE = 2000;
     ImageView imgGallery;
+    String url = "https://pixabay.com/images/search/nature/";
 
 
     @Override
@@ -27,6 +31,19 @@ public class Gallery extends AppCompatActivity {
         imgGallery= findViewById(R.id.imgGallery);
         Button btnGallery = findViewById(R.id.btnGallery);
         Button btnCamera = findViewById(R.id.btnCamera);
+        Button btnPicasso = findViewById(R.id.btnPicasso);
+
+
+        btnPicasso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Picasso.get()
+                        .load(url)
+                        .placeholder(R.drawable.baseline_image_24)
+                        .into(imgGallery);
+            }
+        });
 
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
